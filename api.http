@@ -2,3 +2,13 @@
 
 GET http://localhost:3000
 
+### hello word
+GET http://localhost:3000/products
+
+### hello word
+POST http://localhost:3000/products
+content-type: application/json
+
+{
+  "name": "Camisa Roxa"
+}

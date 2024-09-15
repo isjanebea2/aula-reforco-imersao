@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
+import { HomeController } from './home.controller';
+import { ExampleModule } from './example-for-modules/product.module';
 
 @Module({
   imports: [
@@ -27,8 +29,9 @@ import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
         return config as TypeOrmModuleAsyncOptions;
       },
     }),
+    ExampleModule
   ],
-  controllers: [],
+  controllers: [HomeController],
   providers: [],
 })
 export class AppModule {}

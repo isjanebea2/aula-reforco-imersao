@@ -5,7 +5,10 @@ import { PostService } from "./services/post-service";
 
 @Module({
   imports: [PostRepositoryModule],
-  providers: [PostService],
+  providers: [{
+    provide: PostService,
+    useClass: class Mock {}
+  }],
   controllers: [postsController]
 })
 export class PostDDDModule {}

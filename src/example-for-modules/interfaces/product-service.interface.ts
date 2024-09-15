@@ -6,4 +6,4 @@ export interface ProductServiceInterface {
    list(): Promise<Product[]>
 }
 
-export const PRODUCT_SERVICE_TOKEN = Symbol()
+export const PRODUCT_SERVICE_TOKEN = Symbol() 

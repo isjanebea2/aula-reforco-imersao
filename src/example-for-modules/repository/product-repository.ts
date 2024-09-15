@@ -6,6 +6,7 @@ import { ProductRepositoryInterface } from "../interfaces/product-repository.int
 export class ProductRepository implements ProductRepositoryInterface {
 
   constructor (
+   @InjectRepository(Product) 
    private readonly productRepository: Repository<Product> 
   ) {}
   async create(product: Omit<Product, 'id'>): Promise<Product> {

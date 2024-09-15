@@ -21,6 +21,12 @@ No app
 
   const APP_PORT = configService.get<number>('PORT', 3000)
 ```
+dotenv
+```typescript
+  const configService = app.get<ConfigService>(ConfigService)
+
+  const APP_PORT = process.env.PORT
+```
 
  Nos servicos
 
@@ -99,24 +105,43 @@ export class AppModule {}
 
 ### Nestjs 
 https://docs.nestjs.com/fundamentals/dynamic-modules
+
 https://docs.nestjs.com/techniques/validation
+
 https://docs.nestjs.com/providers
+
 https://docs.nestjs.com/modules
+
 https://docs.nestjs.com/fundamentals/custom-providers
+
 https://docs.nestjs.com/techniques/configuration
+
 https://docs.nestjs.com/techniques/database
+
 https://typeorm.io/repository-api
 
 ### Referências 
+
 https://www.youtube.com/watch?v=bw7So5GMkyg&t=5s
+
 https://www.freecodecamp.org/portuguese/news/os-principios-solid-da-programacao-orientada-a-objetos-explicados-em-bom-portugues/
+
 https://medium.com/solutions-architecture-patterns/anti-corruption-layer-pattern-bd75e1f2be7f
+
 https://renatogontijo.medium.com/aggregate-root-na-modelagem-de-dom%C3%ADnios-ricos-7317238e6d97
+
 https://alistair.cockburn.us/hexagonal-architecture/
+
 https://medium.com/bemobi-tech/ports-adapters-architecture-ou-arquitetura-hexagonal-b4b9904dad1a
+
 https://medium.com/sicreditech/arquitetura-e-design-ports-and-adapters-hexagonal-onion-architecture-e-clean-architecture-1632f6451a20
+
 https://refactoring.guru/design-patterns/command/typescript/example
+
 https://refactoring.guru/design-patterns/adapter/typescript/example
+
 https://refactoring.guru/refactoring/smells/oo-abusers
+
 https://medium.com/@jonesroberto/desing-patterns-parte-8-adapter-21ed67ceb9ed
+
 https://dev.to/oliverigor27/entendendo-heranca-e-composicao-3ehc
