@@ -29,12 +29,12 @@ No app
 ```
 
 
-### Banco de dados | configuração Typeorm 
+### Banco de dados | configuração Typeorm | pg adapter
 
 [Documentação](https://docs.nestjs.com/techniques/database)
 
 ```bash
-npm install --save @nestjs/typeorm typeorm mysql2
+npm install --save @nestjs/typeorm typeorm mysql2 pg
 ```
 
 ```typescript
@@ -46,9 +46,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
+      type: 'postgres',
       host: 'localhost',
-      port: 3306,
+      port: 5432,
       username: 'root',
       password: 'root',
       database: 'test',
@@ -78,14 +78,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
         return {
           type: 'postgres',
-          host: configService.getOrThrow<string>('DB_HOST'),
+          port: 5432
+          host: configService.getOrThrow<string>('DB_HOST'), // recupera o .env do projeto
           username: configService.getOrThrow<string>('DB_USER'),
           password: configService.getOrThrow<string>('DB_PASSWORD'),
           database: configService.getOrThrow<string>('DB_DATABASE'),
-          entities: [__dirname + '/../**/*.entity.{ts|js}'],
-          autoLoadEntities: true,
-          synchronize: IS_PRODUCTION ? false : true,
-          logger: IS_PRODUCTION ? 'error' : 'debug',
+          entities: [__dirname + '/../**/*.entity.{ts|js}'],  // carrega automaticamente as entidades
+          autoLoadEntities: true, // carrega automaticamente as entidades
+          synchronize: IS_PRODUCTION ? false : true, // impede que alterações indesejadas seja feita com clientes reais
+          logger: IS_PRODUCTION ? 'error' : 'debug', // imprime no terminal as consultas feitas no banco
         } as TypeOrmModuleAsyncOptions;
       },
     }),
@@ -95,6 +96,27 @@ export class AppModule {}
 
 ```
 
-### Referências 
-https://reflectoring.io/spring-hexagonal/
 
+### Nestjs 
+https://docs.nestjs.com/fundamentals/dynamic-modules
+https://docs.nestjs.com/techniques/validation
+https://docs.nestjs.com/providers
+https://docs.nestjs.com/modules
+https://docs.nestjs.com/fundamentals/custom-providers
+https://docs.nestjs.com/techniques/configuration
+https://docs.nestjs.com/techniques/database
+https://typeorm.io/repository-api
+
+### Referências 
+https://www.youtube.com/watch?v=bw7So5GMkyg&t=5s
+https://www.freecodecamp.org/portuguese/news/os-principios-solid-da-programacao-orientada-a-objetos-explicados-em-bom-portugues/
+https://medium.com/solutions-architecture-patterns/anti-corruption-layer-pattern-bd75e1f2be7f
+https://renatogontijo.medium.com/aggregate-root-na-modelagem-de-dom%C3%ADnios-ricos-7317238e6d97
+https://alistair.cockburn.us/hexagonal-architecture/
+https://medium.com/bemobi-tech/ports-adapters-architecture-ou-arquitetura-hexagonal-b4b9904dad1a
+https://medium.com/sicreditech/arquitetura-e-design-ports-and-adapters-hexagonal-onion-architecture-e-clean-architecture-1632f6451a20
+https://refactoring.guru/design-patterns/command/typescript/example
+https://refactoring.guru/design-patterns/adapter/typescript/example
+https://refactoring.guru/refactoring/smells/oo-abusers
+https://medium.com/@jonesroberto/desing-patterns-parte-8-adapter-21ed67ceb9ed
+https://dev.to/oliverigor27/entendendo-heranca-e-composicao-3ehc

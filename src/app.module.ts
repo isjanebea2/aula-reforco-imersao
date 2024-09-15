@@ -9,11 +9,11 @@ import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
-
         const IS_PRODUCTION = configService.get('NODE_ENV') === 'production';
 
-        return {
+        const config = {
           type: 'postgres',
+          port: 5432,
           host: configService.getOrThrow<string>('DB_HOST'),
           username: configService.getOrThrow<string>('DB_USER'),
           password: configService.getOrThrow<string>('DB_PASSWORD'),
@@ -22,7 +22,9 @@ import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
           autoLoadEntities: true,
           synchronize: IS_PRODUCTION ? false : true,
           logger: IS_PRODUCTION ? 'error' : 'debug',
-        } as TypeOrmModuleAsyncOptions;
+        };
+
+        return config as TypeOrmModuleAsyncOptions;
       },
     }),
   ],
